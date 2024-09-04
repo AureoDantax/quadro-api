@@ -1,9 +1,12 @@
 package com.quadro.api.model;
 
+import lombok.Getter;
+
+@Getter
 public enum TIPOUSUARIO {
-    ADMINISTRADOR("Administrador"),
-    ESTUDANTE("Estudante"),
-    PROFESSOR("Professor");
+    ADMIN("Administrador"),
+    STUDENT("Estudante"),
+    TEACHER("Professor");
 
     private final String descricao;
 
@@ -11,7 +14,4 @@ public enum TIPOUSUARIO {
         this.descricao = descricao;
     }
 
-    public String getDescricao() {
-        return descricao;
-    }
 }
