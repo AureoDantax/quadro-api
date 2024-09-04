@@ -35,6 +35,7 @@ public class UsuarioService {
         usuario.setImagemPerfil(usuarioRequestDTO.getImagemPerfil());
         usuarioRepository.save(usuario);
 
+
         return usuario;
     }
 }
