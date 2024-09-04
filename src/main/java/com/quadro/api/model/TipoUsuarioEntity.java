@@ -2,6 +2,7 @@ package com.quadro.api.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.springframework.context.annotation.Bean;
 
 @Entity
 @Table(name = "tipo_usuario")
