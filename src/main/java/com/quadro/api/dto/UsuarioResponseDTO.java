@@ -4,7 +4,6 @@ import com.quadro.api.model.Usuario;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 
 @Getter
@@ -17,7 +16,7 @@ public class UsuarioResponseDTO {
     private String email;
     private String tipoUsuario;
 
-   public UsuarioResponseDTO(Usuario usuario){
+    public UsuarioResponseDTO(Usuario usuario) {
         this.id = usuario.getId();
         this.nome = usuario.getNome();
         this.nomeExibicao = usuario.getNomeExibicao();

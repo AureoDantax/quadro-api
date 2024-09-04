@@ -2,8 +2,9 @@ package com.quadro.api.dto;
 
 import com.quadro.api.model.ImagemPerfil;
 import lombok.Data;
+import lombok.Getter;
 
-@Data
+@Getter
 public class UsuarioRequestDTO {
     private String nome;
     private String sobrenome;
