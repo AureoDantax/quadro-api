@@ -4,9 +4,9 @@ import lombok.Getter;
 
 @Getter
 public enum TIPOUSUARIO {
-    ADMIN("Administrador"),
-    STUDENT("Estudante"),
-    TEACHER("Professor");
+    ADMIN("administrador"),
+    STUDENT("aluno"),
+    TEACHER("professor");
 
     private final String descricao;
 
@@ -14,4 +14,12 @@ public enum TIPOUSUARIO {
         this.descricao = descricao;
     }
 
+    public static TIPOUSUARIO fromDescricao(String descricao) {
+        for (TIPOUSUARIO tipo : TIPOUSUARIO.values()) {
+            if (tipo.getDescricao().equalsIgnoreCase(descricao)) {
+                return tipo;
+            }
+        }
+        throw new IllegalArgumentException("Descrição de tipo de usuário inválida: " + descricao);
+    }
 }

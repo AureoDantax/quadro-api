@@ -13,19 +13,20 @@ import org.springframework.stereotype.Service;
 public class UsuarioService {
 
     @Autowired
-    UsuarioRepository usuarioRepository;
-    TipoUsuarioEntity tipoUsuarioEntity;
+    private UsuarioRepository usuarioRepository;
+
     @Autowired
     private TipoUsuarioRepository tipoUsuarioRepository;
 
     public Usuario cadastrarUsuario(UsuarioRequestDTO usuarioRequestDTO) {
-
+        TipoUsuarioEntity tipoUsuarioEntity;
+        TIPOUSUARIO normalizeTipo = TIPOUSUARIO.fromDescricao(usuarioRequestDTO.getTipoUsuario());
 
         Usuario usuario = new Usuario();
         usuario.setNome(usuarioRequestDTO.getNome() + " " + usuarioRequestDTO.getSobrenome());
         usuario.setNomeExibicao(usuarioRequestDTO.getNomeExibicao());
         usuario.setEmail(usuarioRequestDTO.getEmail());
-        TipoUsuarioEntity tipoUsuarioEntity = tipoUsuarioRepository.findByTipo(TIPOUSUARIO.valueOf(usuarioRequestDTO.getTipoUsuario()));
+        tipoUsuarioEntity = tipoUsuarioRepository.findByTipo(normalizeTipo);
         usuario.setTipoUsuario(tipoUsuarioEntity);
         usuario.setCpf(usuarioRequestDTO.getCpf());
         usuario.setLogin(usuarioRequestDTO.getEmail());
