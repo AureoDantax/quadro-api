@@ -36,7 +36,7 @@ public class Usuario implements UserDetails {
 
 
     @Column(nullable = false, length = 100)
-    private String nomeExibicao;
+    private String apelido;
 
     @Column(nullable = false, length = 100)
     @NotBlank(message = "O campo senha é obrigatório")
@@ -65,7 +65,8 @@ public class Usuario implements UserDetails {
     @OneToOne(cascade = CascadeType.ALL)
     private ImagemPerfil imagemPerfil;
 
-
+    public Usuario(String s, String apelido, String email, String cpf, String email1, String senha, String telefone, String instituicao, ImagemPerfil imagemPerfil, TipoUsuarioEntity tipoUsuario) {
+    }
 
 
     @Override

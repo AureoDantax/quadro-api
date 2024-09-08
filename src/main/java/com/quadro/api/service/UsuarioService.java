@@ -2,7 +2,6 @@ package com.quadro.api.service;
 
 import com.quadro.api.dto.UsuarioRequestDTO;
 import com.quadro.api.model.TIPOUSUARIO;
-import com.quadro.api.model.TipoUsuarioEntity;
 import com.quadro.api.model.Usuario;
 import com.quadro.api.repository.TipoUsuarioRepository;
 import com.quadro.api.repository.UsuarioRepository;
@@ -19,24 +18,21 @@ public class UsuarioService {
     private TipoUsuarioRepository tipoUsuarioRepository;
 
     public Usuario cadastrarUsuario(UsuarioRequestDTO usuarioRequestDTO) {
-        TipoUsuarioEntity tipoUsuarioEntity;
-        TIPOUSUARIO normalizeTipo = TIPOUSUARIO.fromDescricao(usuarioRequestDTO.getTipoUsuario());
-
-        Usuario usuario = new Usuario();
-        usuario.setNome(usuarioRequestDTO.getNome() + " " + usuarioRequestDTO.getSobrenome());
-        usuario.setNomeExibicao(usuarioRequestDTO.getNomeExibicao());
-        usuario.setEmail(usuarioRequestDTO.getEmail());
-        tipoUsuarioEntity = tipoUsuarioRepository.findByTipo(normalizeTipo);
-        usuario.setTipoUsuario(tipoUsuarioEntity);
-        usuario.setCpf(usuarioRequestDTO.getCpf());
-        usuario.setLogin(usuarioRequestDTO.getEmail());
-        usuario.setSenha(usuarioRequestDTO.getSenha());
-        usuario.setTelefone(usuarioRequestDTO.getTelefone());
-        usuario.setInstituicao(usuarioRequestDTO.getInstituicao());
-        usuario.setImagemPerfil(usuarioRequestDTO.getImagemPerfil());
-        usuarioRepository.save(usuario);
+        var normalizeTipo = TIPOUSUARIO.fromDescricao(usuarioRequestDTO.getTipoUsuario());
+        var tipoUsuarioEntity = tipoUsuarioRepository.findByTipo(normalizeTipo);
 
 
-        return usuario;
+        return usuarioRepository.save(new Usuario(
+                usuarioRequestDTO.getNome() + " " + usuarioRequestDTO.getSobrenome(),
+                usuarioRequestDTO.getApelido(),
+                usuarioRequestDTO.getEmail(),
+                usuarioRequestDTO.getCpf(),
+                usuarioRequestDTO.getEmail(),
+                usuarioRequestDTO.getSenha(),
+                usuarioRequestDTO.getTelefone(),
+                usuarioRequestDTO.getInstituicao(),
+                usuarioRequestDTO.getImagemPerfil(),
+                tipoUsuarioEntity
+        ));
     }
 }

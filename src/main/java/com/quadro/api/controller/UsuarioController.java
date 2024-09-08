@@ -3,11 +3,13 @@ package com.quadro.api.controller;
 
 import com.quadro.api.dto.UsuarioRequestDTO;
 import com.quadro.api.dto.UsuarioResponseDTO;
-import com.quadro.api.service.AuthService;
 import com.quadro.api.service.UsuarioService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import static org.springframework.http.ResponseEntity.created;
 
 
 @RestController
@@ -19,11 +21,10 @@ public class UsuarioController {
 
 
     @PostMapping("/cadastrar")
-    public UsuarioResponseDTO cadastrarUsuario(@Valid @RequestBody UsuarioRequestDTO usuarioRequestDTO) {
+    public ResponseEntity<UsuarioResponseDTO> cadastrarUsuario(@Valid @RequestBody UsuarioRequestDTO usuarioRequestDTO) {
         var usuarioEntity = usuarioService.cadastrarUsuario(usuarioRequestDTO);
+        return created(null).body(new UsuarioResponseDTO(usuarioEntity));
 
-
-        return new UsuarioResponseDTO(usuarioEntity);
     }
 
 
