@@ -6,10 +6,14 @@ import com.quadro.api.model.Usuario;
 import com.quadro.api.repository.TipoUsuarioRepository;
 import com.quadro.api.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UsuarioService {
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
     private UsuarioRepository usuarioRepository;
@@ -26,7 +30,7 @@ var usuario = new Usuario(
         usuarioRequestDTO.getEmail(), // login tambem é o email por enquanto
         usuarioRequestDTO.getCpf(),
         usuarioRequestDTO.getEmail(),
-        usuarioRequestDTO.getSenha(),
+        passwordEncoder.encode(usuarioRequestDTO.getSenha()),
         usuarioRequestDTO.getTelefone(),
         usuarioRequestDTO.getInstituicao(),
         tipoUsuarioEntity
