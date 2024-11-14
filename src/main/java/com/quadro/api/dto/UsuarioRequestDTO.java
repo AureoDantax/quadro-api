@@ -6,7 +6,6 @@ import lombok.Getter;
 @Getter
 public class UsuarioRequestDTO {
     private String nome;
-    private String sobrenome;
     private String apelido;
     private String cpf;
     private String email;

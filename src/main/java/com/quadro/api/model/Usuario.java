@@ -65,7 +65,25 @@ public class Usuario implements UserDetails {
     @OneToOne(cascade = CascadeType.ALL)
     private ImagemPerfil imagemPerfil;
 
-    public Usuario(String s, String apelido, String email, String cpf, String email1, String senha, String telefone, String instituicao, ImagemPerfil imagemPerfil, TipoUsuarioEntity tipoUsuario) {
+    public Usuario(
+                  String nome,
+                   String apelido,
+                   String email,
+                   String cpf,
+                   String login,
+                   String senha,
+                   String telefone,
+                   String instituicao,
+                   TipoUsuarioEntity tipoUsuario) {
+        this.nome = nome;
+        this.apelido = apelido;
+        this.email = email;
+        this.cpf = cpf;
+        this.login = login;
+        this.senha = senha;
+        this.telefone = telefone;
+        this.instituicao = instituicao;
+        this.tipoUsuario = tipoUsuario;
     }
 
 

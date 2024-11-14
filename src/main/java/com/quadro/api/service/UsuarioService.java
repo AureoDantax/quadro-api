@@ -20,19 +20,18 @@ public class UsuarioService {
     public Usuario cadastrarUsuario(UsuarioRequestDTO usuarioRequestDTO) {
         var normalizeTipo = TIPOUSUARIO.fromDescricao(usuarioRequestDTO.getTipoUsuario());
         var tipoUsuarioEntity = tipoUsuarioRepository.findByTipo(normalizeTipo);
+var usuario = new Usuario(
+        usuarioRequestDTO.getNome(),
+        usuarioRequestDTO.getApelido(),
+        usuarioRequestDTO.getEmail(), // login tambem é o email por enquanto
+        usuarioRequestDTO.getCpf(),
+        usuarioRequestDTO.getEmail(),
+        usuarioRequestDTO.getSenha(),
+        usuarioRequestDTO.getTelefone(),
+        usuarioRequestDTO.getInstituicao(),
+        tipoUsuarioEntity
+);
 
-
-        return usuarioRepository.save(new Usuario(
-                usuarioRequestDTO.getNome() + " " + usuarioRequestDTO.getSobrenome(),
-                usuarioRequestDTO.getApelido(),
-                usuarioRequestDTO.getEmail(),
-                usuarioRequestDTO.getCpf(),
-                usuarioRequestDTO.getEmail(),
-                usuarioRequestDTO.getSenha(),
-                usuarioRequestDTO.getTelefone(),
-                usuarioRequestDTO.getInstituicao(),
-                usuarioRequestDTO.getImagemPerfil(),
-                tipoUsuarioEntity
-        ));
+        return usuarioRepository.save(usuario);
     }
 }
